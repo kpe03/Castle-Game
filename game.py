@@ -1,15 +1,14 @@
 import pygame
+import utils.config
+from utils.game_state import GameState
 
 class FarmingGame:
-    def __init__(self):
-        self.__init__pygame()
-        self.screen = pygame.display.set_mode(1280, 720)
-        self.screen.fill("purple")
-        self.clock = pygame.time.Clock()
-
-    #draw assets on the screen
-    # def _draw(self):
-    #     #placeholder
+    def __init__(self, screen):
+        
+        self.screen = screen
+        self.objects = []
+        self.map = []
+        self.game_state = GameState.NONE
 
     #for game logic
     # def _process_game_logic(self):
@@ -22,5 +21,9 @@ class FarmingGame:
                 quit()
 
         #player movement
+
+
+                
+        
 
         
