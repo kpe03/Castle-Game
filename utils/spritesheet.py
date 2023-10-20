@@ -4,7 +4,7 @@ import config
 
 class SpriteSheet(object):
     #load spritesheet
-    def __init_(self, file_name):
+    def __init__(self, file_name):
 
         self.spriteSheet = pygame.image.load(file_name).convert()
 
