@@ -1,6 +1,6 @@
 import pygame
 import utils.config
-import utils.game_state
+from utils.game_state import GameState
 from utils.background import Background
 
 class FarmingGame():
@@ -9,25 +9,21 @@ class FarmingGame():
         self.screen = screen
         self.objects = []
         self.map = []
-        self.game_state = utils.game_state.GameState.NONE
+        self.game_state = GameState.NONE
         #initialize the background with the tilesheet
-        self.background = Background("assets/free version/free.png", self.screen)
+        #self.background = Background("assets/free version/free.png", self.screen)
 
     def set_up(self):
-        self.game_state = utils.game_state.GameState.RUNNING
-        self.handle_input()
+        self.game_state = GameState.RUNNING
         #load map
-        self.background.load_map("map1")
+        #self.background.load_map("map1")
 
     def update(self):
-        self.screen.fill(utils.config.BLACK)
+        self.handle_input()
+        #self.screen.fill(utils.config.BLACK)
         #render map
-        self.background.render_map()
-
-    def draw(self, screen):
-        screen.fill(utils.config.BLACK)
+        #self.background.render_map()
     
-
     #for game logic
     # def _process_game_logic(self):
     #     #placeholder

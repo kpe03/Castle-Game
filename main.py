@@ -1,6 +1,6 @@
 import pygame
 import utils.config
-import utils.game_state
+from utils.game_state import GameState
 
 from game import FarmingGame
 
@@ -14,10 +14,10 @@ pygame.display.set_caption("Farming Game")
 clock = pygame.time.Clock()
 
 game = FarmingGame(screen)
-#call methods for starting game, input/logic, and drawing to screen
+#call methods for starting game, input/logic
 game.set_up()
 
-while game.game_state == utils.game_state.GameState.RUNNING:
+while game.game_state == GameState.RUNNING:
     clock.tick(60)
     game.update()
     pygame.display.flip()
