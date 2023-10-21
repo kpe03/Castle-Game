@@ -6,11 +6,6 @@ from utils.spritesheet import SpriteSheet
 
 """utils: file for loading backgrounds and other objects"""
 """inherits from Spritesheet"""
-"""to do:
-1. draw tiles on map
-2. figure out camera situation
-3. make sure it works lol 
-4. fix render map? Not sure how its drawing to screen? """
 class Background(SpriteSheet):
     def __init__(self, file_name):
         super().__init__(file_name)
@@ -21,25 +16,33 @@ class Background(SpriteSheet):
     #load maps from /maps 
     #reads from .txt file and converts to a list
     def load_map(self, map_file):
+            #open file
             with open('utils/maps/' + map_file + ".txt") as mfile:
+                #string in textIOwrapper
                 for line in mfile:
                     tiles =[]
+                    #int for length of line, increment 2
                     for i in range(0, len(line) -1, 2):
+                        #add int to tiles list
                         tiles.append(line[i])
+                    #append the tile rows to the map list
                     self.map.append(tiles)
+                
                 print(self.map)
                 #now render the list
                 self.render_map()
 
     #render the map
     def render_map(self):
-        y_pos = 0
+        
+        #for each row in map
         for line in self.map:
-            x_pos = 0
+            #each num in line
             for tileNum in line:
                 #for each tile in map, get corresponding tile image
-                tile = self.get_image(tileNum)
+                #convert the string to an int
+                tile = self.get_image(int(tileNum))
                 #new image size of the screen
-                self.image.blit(tile, line, tileNum)
+                self.image.blit(tile, line, int(tileNum))
                 
     
