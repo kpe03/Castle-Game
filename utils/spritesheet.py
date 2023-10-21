@@ -16,17 +16,26 @@ class SpriteSheet:
     #get sprite
     def get_image(self, tileNum):
         #make a new image for sprite
-        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE]).convert_alpha()
+        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE])
 
         #copy the sprite from the sheet to the new image
         #to find the x:
         x = tileNum % (self.tile_width -1) * utils.config.TILE_SIZE
+        
         #to find the y: 
         y = math.floor(tileNum / self.tile_height) * utils.config.TILE_SIZE
-        #image.blit(self.spriteSheet, (0, 0), (x, y, config.TILE_SIZE, config.TILE_SIZE))
+        
+        #prints... but needs to be bigger and only prints one tile?
+        #image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE))
 
         #set transparent color to white
-        image.set_colorkey(utils.config.WHITE)
+        #image.set_colorkey(utils.config.WHITE)
 
         return image
+    
+    def test_image(self, x, y):
+        #for testing
+        #x and y are calculating correctly..?
+        print("Found y: " + str(y))
+        print("Found x:" + str(x))
 

@@ -37,7 +37,9 @@ class Background(SpriteSheet):
     def render_map(self):
         
         #for each row in map
+        xpos = 0
         for line in self.map:
+            ypos = 0
             #each num in line
             for tileNum in line:
                 #for each tile in map, get corresponding tile image
@@ -45,7 +47,15 @@ class Background(SpriteSheet):
                 tile = self.get_image(int(tileNum))
                 #new image size of the screen
                 #self.image.blit(tile, line, int(tileNum))
-                rect = pygame.Rect(0, 0, utils.config.SCALE, utils.config.SCALE)
-                self.screen.blit(tile, rect)
-                
+                rect = pygame.Rect(xpos, ypos, utils.config.SCREEN_WIDTH, utils.config.SCREEN_HEIGHT)
+                ypos = ypos + 1
+                self.test_background(line, tileNum)
+            xpos = xpos + 1  
+
+        self.screen.blit(tile, rect)
     
+    #testing background methods
+    def test_background(self, line, tileNum):
+        #tile num is right, then loading the tiles is wrong and the tiles aren't getting loaded to the correct
+        #spot on the rect
+        print("TileNum: " + tileNum)

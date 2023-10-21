@@ -11,18 +11,18 @@ class FarmingGame():
         self.map = []
         self.game_state = GameState.NONE
         #initialize the background with the tilesheet
-        #self.background = Background("assets/free version/free.png", self.screen)
+        self.background = Background("assets/free version/free.png", self.screen)
 
     def set_up(self):
         self.game_state = GameState.RUNNING
         #load map
-        #self.background.load_map("map1")
+        self.background.load_map("map1")
 
     def update(self):
         self.handle_input()
         #self.screen.fill(utils.config.BLACK)
-        #render map
-        #self.background.render_map()
+        #render map: render map doesn't work :(
+        self.background.render_map()
     
     #for game logic
     # def _process_game_logic(self):
