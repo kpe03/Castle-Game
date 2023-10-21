@@ -54,8 +54,7 @@ class Background(SpriteSheet):
                 screen.blit(tile, rect)
                 xpos = xpos + 1
                 #self.test_background(line, tileNum)
-
-        ypos = ypos + 1  
+            ypos = ypos + 1  
 
        
     

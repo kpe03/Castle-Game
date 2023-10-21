@@ -22,8 +22,8 @@ class FarmingGame():
         self.handle_input()
         #self.screen.fill(utils.config.BLACK)
         #render map: render map doesn't work :(
-        #self.background.render_map(self.screen)
-        self.screen.blit(self.background.get_image(7), (0,0))
+        self.background.render_map(self.screen)
+        # self.screen.blit(self.background.get_image(7), (0,0))
 
     
     #for game logic
