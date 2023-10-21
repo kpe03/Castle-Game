@@ -10,8 +10,6 @@ class Background(SpriteSheet):
     def __init__(self, file_name, screen):
         super().__init__(file_name)
         self.map = []
-        self.image = pygame.Rect(0, 0, utils.config.SCREEN_HEIGHT,
-                                    utils.config.SCREEN_WIDTH)
         self.screen = screen
     
     #load maps from /maps 
@@ -23,36 +21,43 @@ class Background(SpriteSheet):
                 for line in mfile:
                     tiles =[]
                     #int for length of line, increment 2
-                    for i in range(0, len(line) -1, 2):
+                    for i in range(0, len(line) - 1, 2):
                         #add int to tiles list
                         tiles.append(line[i])
                     #append the tile rows to the map list
                     self.map.append(tiles)
                 
                 print(self.map)
-                #now render the list
-                self.render_map()
+                # #now render the list
+                # self.render_map()
 
     #render the map
-    def render_map(self):
+    #added screen parameter..? maybe that was the problem
+    def render_map(self, screen):
         
+        # rect = pygame.Rect(0, 0, utils.config.SCALE, utils.config.SCALE)
+        # tile = self.get_image(int(7))
+        # screen.blit(tile, rect)
+
         #for each row in map
-        xpos = 0
+        ypos = 0
         for line in self.map:
-            ypos = 0
+            xpos = 0
             #each num in line
             for tileNum in line:
                 #for each tile in map, get corresponding tile image
-                #convert the string to an int
+                #tileNum is a string-- conver to an int
                 tile = self.get_image(int(tileNum))
                 #new image size of the screen
-                #self.image.blit(tile, line, int(tileNum))
-                rect = pygame.Rect(xpos, ypos, utils.config.SCREEN_WIDTH, utils.config.SCREEN_HEIGHT)
-                ypos = ypos + 1
-                self.test_background(line, tileNum)
-            xpos = xpos + 1  
+                rect = pygame.Rect(xpos * utils.config.SCALE, ypos  * utils.config.SCALE, utils.config.SCALE, utils.config.SCALE)
+                #blit!
+                screen.blit(tile, rect)
+                xpos = xpos + 1
+                #self.test_background(line, tileNum)
 
-        self.screen.blit(tile, rect)
+        ypos = ypos + 1  
+
+       
     
     #testing background methods
     def test_background(self, line, tileNum):

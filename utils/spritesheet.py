@@ -25,13 +25,13 @@ class SpriteSheet:
         #to find the y: 
         y = math.floor(tileNum / self.tile_height) * utils.config.TILE_SIZE
         
-        #prints... but needs to be bigger and only prints one tile?
-        #image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE))
+        #blits the sprite onto new image
+        image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE))
+        #resize the image
+        sizedImage = pygame.transform.scale(image, (utils.config.SCALE, utils.config.SCALE))
 
-        #set transparent color to white
-        #image.set_colorkey(utils.config.WHITE)
-
-        return image
+        #return resized, new sprite @ TileNum
+        return sizedImage
     
     def test_image(self, x, y):
         #for testing
