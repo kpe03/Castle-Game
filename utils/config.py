@@ -9,3 +9,6 @@ SCREEN_HEIGHT = 600
 
 #tile size: always 16 pixels
 TILE_SIZE = 16
+
+#SCALE
+SCALE = 32

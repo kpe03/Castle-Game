@@ -10,19 +10,19 @@ class FarmingGame():
         self.objects = []
         self.map = []
         self.game_state = utils.game_state.GameState.NONE
+        #initialize the background with the tilesheet
+        self.background = Background("assets/free version/free.png", self.screen)
 
     def set_up(self):
         self.game_state = utils.game_state.GameState.RUNNING
         self.handle_input()
         #load map
-        #create new background object with sprite png
-        load_background = Background("assets/free version/free.png")
-        load_background.load_map("map1")
+        self.background.load_map("map1")
 
     def update(self):
         self.screen.fill(utils.config.BLACK)
-        #RENDER MAP!! should this go here?
-        self.map.render_map(self.screen)
+        #render map
+        self.background.render_map()
 
     def draw(self, screen):
         screen.fill(utils.config.BLACK)

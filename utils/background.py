@@ -7,11 +7,12 @@ from utils.spritesheet import SpriteSheet
 """utils: file for loading backgrounds and other objects"""
 """inherits from Spritesheet"""
 class Background(SpriteSheet):
-    def __init__(self, file_name):
+    def __init__(self, file_name, screen):
         super().__init__(file_name)
         self.map = []
         self.image = pygame.Rect(0, 0, utils.config.SCREEN_HEIGHT,
                                     utils.config.SCREEN_WIDTH)
+        self.screen = screen
     
     #load maps from /maps 
     #reads from .txt file and converts to a list
@@ -43,6 +44,8 @@ class Background(SpriteSheet):
                 #convert the string to an int
                 tile = self.get_image(int(tileNum))
                 #new image size of the screen
-                self.image.blit(tile, line, int(tileNum))
+                #self.image.blit(tile, line, int(tileNum))
+                rect = pygame.Rect(0, 0, utils.config.SCALE, utils.config.SCALE)
+                self.screen.blit(tile, rect)
                 
     
