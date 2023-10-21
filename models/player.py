@@ -1,9 +1,6 @@
+# import pygame
+# from models.game_objects import GameObjects
 
-#parent class for objects in game
-class GameObjects:
-    def __init__(self, position):
-        self.position
-        self.radius
-        self.velocity
-
-    
+# class Player(GameObjects):
+#     def __init__(self):
+#         super().__init__(position)
