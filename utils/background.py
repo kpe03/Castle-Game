@@ -28,16 +28,10 @@ class Background(SpriteSheet):
                     self.map.append(tiles)
                 
                 print(self.map)
-                # #now render the list
-                # self.render_map()
 
     #render the map
     #added screen parameter..? maybe that was the problem
     def render_map(self, screen):
-        
-        # rect = pygame.Rect(0, 0, utils.config.SCALE, utils.config.SCALE)
-        # tile = self.get_image(int(7))
-        # screen.blit(tile, rect)
 
         #for each row in map
         ypos = 0
@@ -46,18 +40,16 @@ class Background(SpriteSheet):
             #each num in line
             for tileNum in line:
                 #for each tile in map, get corresponding tile image
-                #tileNum is a string-- conver to an int
+                #tileNum is a string-- convert to an int
                 tile = self.get_image(int(tileNum))
                 #new image size of the screen
                 rect = pygame.Rect(xpos * utils.config.SCALE, ypos  * utils.config.SCALE, utils.config.SCALE, utils.config.SCALE)
                 #blit!
                 screen.blit(tile, rect)
                 xpos = xpos + 1
-                #self.test_background(line, tileNum)
+                
             ypos = ypos + 1  
 
-       
-    
     #testing background methods
     def test_background(self, line, tileNum):
         #tile num is right, then loading the tiles is wrong and the tiles aren't getting loaded to the correct
