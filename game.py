@@ -20,11 +20,8 @@ class FarmingGame():
 
     def update(self):
         self.handle_input()
-        #self.screen.fill(utils.config.BLACK)
-        #render map: render map doesn't work :(
+        #render map to screen
         self.background.render_map(self.screen)
-        # self.screen.blit(self.background.get_image(7), (0,0))
-
     
     #for game logic
     # def _process_game_logic(self):
@@ -35,8 +32,18 @@ class FarmingGame():
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 quit()
+            #player movement
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w: #up
+                    #update sprite/position
+                elif event.key == pygame.K_s: #down
+                    #update sprite/position
+                elif event.key == pygame.K_a: #left
+                    #update sprite/position
+                elif event.key == pygame.K_d: #right
+                    #update sprite/position
 
-        #player movement
+                
 
     
 
