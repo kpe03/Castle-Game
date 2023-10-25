@@ -14,10 +14,9 @@ class GameObjects:
         #using tile name, load the image
         self.sprite = self.sprite_sheet.get_image(tileNum)
         #calculate the position to blit image to surface
-        blit_position = self.position #probably use more later
+       # blit_position = self.position #probably use more later
         #blit to surface
-        surface.blit(self.sprite, blit_position)
+        #surface.blit(self.sprite, blit_position)
 
     #detect collision
     #def collides_with(self, object):
-
