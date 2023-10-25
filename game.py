@@ -40,6 +40,7 @@ class FarmingGame():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w: #up
                     self.player.update_position(0, 1)
+                    self.player.render(())
                 elif event.key == pygame.K_s: #down
                     self.player.update_position(0, -1)
                 elif event.key == pygame.K_a: #left
