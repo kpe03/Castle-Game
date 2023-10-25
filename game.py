@@ -2,6 +2,7 @@ import pygame
 import utils.config
 from utils.game_state import GameState
 from utils.background import Background
+from models.player import Player
 
 class FarmingGame():
     def __init__(self, screen):
@@ -14,6 +15,9 @@ class FarmingGame():
         self.background = Background("assets/free version/free.png", self.screen)
 
     def set_up(self):
+        #load player in the center of the screen and sprite sheet
+        player = Player(utils.config.SCREEN_CENTER, "assets/char free/global.png")
+        self.player = player
         self.game_state = GameState.RUNNING
         #load map
         self.background.load_map("map1")
@@ -35,14 +39,14 @@ class FarmingGame():
             #player movement
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w: #up
-                    #update sprite/position
+                    self.player.update_position(0, 1)
                 elif event.key == pygame.K_s: #down
-                    #update sprite/position
+                    self.player.update_position(0, -1)
                 elif event.key == pygame.K_a: #left
-                    #update sprite/position
+                    self.player.update_position(1, 0)
                 elif event.key == pygame.K_d: #right
-                    #update sprite/position
-
+                    self.player.update_position(-1, 0)
+                    
                 
 
     

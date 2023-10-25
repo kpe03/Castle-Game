@@ -1,2 +1,2 @@
-placeholder sprites for crops
+placeholder sprites for crops/grass/objects
 source: https://shubibubi.itch.io/cozy-farm
