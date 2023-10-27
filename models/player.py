@@ -8,26 +8,33 @@ from utils.spritesheet import SpriteSheet
 class Player(GameObjects):
     def __init__(self, position, file_name):
         super().__init__(position)
-        self.sprite_sheet = SpriteSheet(file_name) #load spritesheet for image
+        self.charSprite = SpriteSheet(file_name) #load spritesheet for image
         self.rect = pygame.Rect() #for sprites
+        #customizable things ------
+        #self.hair sprite object for hair?
+        #self.shirt sprite object for shirt
+        #self.bottoms sprite object for pants
+        #self.shoes sprite object for shoes
+        #self.hat sprite object for hat
+        #----------------------------
         #self.animations_list = [] #for later: list of animations
 
     #update players position + change sprites
-    def update_position(self, new_position, tile_Num):
-        #position is a tuple, thus we can add the new position to the old one
-        #remember!! tuples are not mutable!!!
+    def update_position(self, new_position, tileNumList):
+       #update position
+       #depending on x,y coords, change the direction of movement?
         self.position += new_position
         
-        #side note: [] are lists thus their items are strings
-        #(1, 1) is a tuple thus type(1) would be 'int'
-
-    def load_sprites(self, tileNum):
-        return self.sprite_sheet.get_image(tileNum)
-           
-    #make a call to load_sprites to get the current one
+    #grabs the tile from the spritesheet
+    def load_sprites(self, tileNumList):
+        #get each tileNum in the tuple
+        for tile in tileNumList:
+            #the first tile will be the head of the player sprite
+            self.charSprite.get_image(tile)
+        
     #blit to screen at current position
-    def render(self, screen, tileNum):
-        screen.blit(self.load_sprites(tileNum), self.position)
+    def render(self, screen, tileNumList):
+        screen.blit(self.charSprite(tileNum), self.position)
 
     
 

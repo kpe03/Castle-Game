@@ -2,6 +2,9 @@ import pygame
 import math
 import utils.config
 
+# =================
+#  sprite sheet
+# =================
 class SpriteSheet:
     #load spritesheet
     def __init__(self, file_name):
@@ -39,3 +42,31 @@ class SpriteSheet:
         print("Found y: " + str(y))
         print("Found x:" + str(x))
 
+# =================
+# char sprite sheet
+# =================
+#a class to handle char sprites which are formatted differently
+class CharSpriteSheet(SpriteSheet):
+    #load char sprite sheet
+    def __init__(self, file_name, tile_width, tile_height):
+        super().__init__(tile_width, tile_height)
+        #ignore the border
+        self.border = utils.config.SHEET_BORDER
+
+        self.spriteSheet = pygame.image.load(file_name).convert()
+    
+    #overload
+    def get_image(self, tileNum):
+        #make a sprite image that is 16x32
+        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE])
+
+        #to find the x:
+        x = tileNum % ((self.tile_width + self.border) -1) * utils.config.TILE_SIZE
+        #to find the y: 
+        y = math.floor(tileNum / self.tile_height) * utils.config.TILE_SIZE
+        #blits the sprite onto new image
+        image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE))
+        #resize the image
+        sizedImage = pygame.transform.scale(image, (utils.config.SCALE, utils.config.SCALE))
+
+        return sizedImage

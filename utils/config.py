@@ -12,3 +12,6 @@ TILE_SIZE = 16
 
 #SCALE
 SCALE = 40
+
+#----CHAR SHEETS---
+SHEET_BORDER = 8 #pixels
