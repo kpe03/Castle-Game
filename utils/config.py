@@ -10,7 +10,7 @@ SCREEN_CENTER = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 #tile size: always 16 pixels
 TILE_SIZE = 16
 
-#SCALE
+#SCALE to make sprites larger
 SCALE = 40
 
 #----CHAR SHEETS---
