@@ -5,4 +5,4 @@
 <li>Player functionality</li>
 <li>Implement crops</li>
 <li>UI</li>
-</ul>6
+</ul>
