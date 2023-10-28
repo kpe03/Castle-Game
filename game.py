@@ -18,6 +18,8 @@ class FarmingGame():
         #load player in the center of the screen and sprite sheet
         player = Player(utils.config.SCREEN_CENTER, "assets/char free/global.png")
         self.player = player
+
+        #other:
         self.game_state = GameState.RUNNING
         #load map
         self.background.load_map("map1")
@@ -26,6 +28,7 @@ class FarmingGame():
         self.handle_input()
         #render map to screen
         self.background.render_map(self.screen)
+        self.player.render(self.screen, 0) #render default position
     
     #for game logic
     # def _process_game_logic(self):
@@ -40,7 +43,6 @@ class FarmingGame():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w: #up
                     self.player.update_position(0, 1)
-                    self.player.render(())
                 elif event.key == pygame.K_s: #down
                     self.player.update_position(0, -1)
                 elif event.key == pygame.K_a: #left
