@@ -1,33 +1,42 @@
 import pygame
-import collections
 
-import utils.config
 from models.game_objects import GameObjects
-from utils.spritesheet import SpriteSheet
+from utils.spritesheet import CharSpriteSheet, SpriteSheet
 
 class Player(GameObjects):
     def __init__(self, position, file_name):
-        super().__init__(position)
-        self.sprite_sheet = SpriteSheet(file_name) #load spritesheet for image
-        self.rect = pygame.Rect() #for sprites
+        super().__init__(position, file_name)
+        self.charSprite = CharSpriteSheet(file_name) #load spritesheet for image
+        self.position = position
+        #self.rect = pygame.Rect() #for sprites
+        #customizable things ------
+        #self.hair sprite object for hair?
+        #self.shirt sprite object for shirt
+        #self.bottoms sprite object for pants
+        #self.shoes sprite object for shoes
+        #self.hat sprite object for hat
+        #----------------------------
         #self.animations_list = [] #for later: list of animations
 
     #update players position + change sprites
-    def update_position(self, new_position, tile_Num):
-        #position is a tuple, thus we can add the new position to the old one
-        #remember!! tuples are not mutable!!!
-        self.position += new_position
-        
-        #side note: [] are lists thus their items are strings
-        #(1, 1) is a tuple thus type(1) would be 'int'
+    def update_position(self, x_pos, y_pos):
+       #update position
+       self.position[0] += x_pos
+       self.position[1] += y_pos
 
-    def load_sprites(self, tileNum):
-        return self.sprite_sheet.get_image(tileNum)
-           
-    #make a call to load_sprites to get the current one
+    #grabs the tile from the spritesheet
+    # def load_sprites(self, tileNum):
+        #get each tileNum in the tuple
+        #the first tile will be the head of the player sprite
+        # self.charSprite.get_image(tileNum)
+        
     #blit to screen at current position
     def render(self, screen, tileNum):
-        screen.blit(self.load_sprites(tileNum), self.position)
+        #print("player rendered")
+        image = self.charSprite.get_image(tileNum)
+        print(self.position)
+        screen.blit(image, self.position)
+        
 
     
 
