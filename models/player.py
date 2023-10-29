@@ -7,6 +7,7 @@ class Player(GameObjects):
     def __init__(self, position, file_name):
         super().__init__(position, file_name)
         self.charSprite = CharSpriteSheet(file_name) #load spritesheet for image
+        self.position = position
         #self.rect = pygame.Rect() #for sprites
         #customizable things ------
         #self.hair sprite object for hair?
@@ -18,10 +19,11 @@ class Player(GameObjects):
         #self.animations_list = [] #for later: list of animations
 
     #update players position + change sprites
-    def update_position(self, new_position, tileNum):
+    def update_position(self, x_pos, y_pos):
        #update position
-        self.position += new_position
-        
+       self.position[0] += x_pos
+       self.position[1] += y_pos
+
     #grabs the tile from the spritesheet
     # def load_sprites(self, tileNum):
         #get each tileNum in the tuple
@@ -32,7 +34,9 @@ class Player(GameObjects):
     def render(self, screen, tileNum):
         #print("player rendered")
         image = self.charSprite.get_image(tileNum)
+        print(self.position)
         screen.blit(image, self.position)
+        
 
     
 
