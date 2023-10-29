@@ -40,18 +40,19 @@ class FarmingGame():
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 quit()
-            #player movement:
-            #move while key is pressed down
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w: #up
-                    self.player.update_position(0 , -1)
-                elif event.key == pygame.K_s: #down
-                    self.player.update_position(0 , 1)
-                elif event.key == pygame.K_a: #left
-                    self.player.update_position(-1, 0)
-                elif event.key == pygame.K_d: #right
-                    self.player.update_position(1, 0)
-                    
+        #player movement:
+        #move while key is pressed down
+        keys = pygame.key.get_pressed()
+        if self.player:
+            if keys[pygame.K_w]: #up
+                self.player.update_position(0 , -1 * utils.config.WALK_SPEED)
+            elif keys[pygame.K_s]: #down
+                self.player.update_position(0 , utils.config.WALK_SPEED)
+            elif keys[pygame.K_a]: #left
+                self.player.update_position(-1 * utils.config.WALK_SPEED, 0)
+            elif keys[pygame.K_d]: #right
+                self.player.update_position(utils.config.WALK_SPEED, 0)
+
                 
 
     

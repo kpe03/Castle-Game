@@ -34,7 +34,6 @@ class Player(GameObjects):
     def render(self, screen, tileNum):
         #print("player rendered")
         image = self.charSprite.get_image(tileNum)
-        print(self.position)
         screen.blit(image, self.position)
         
 
