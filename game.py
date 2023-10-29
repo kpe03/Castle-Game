@@ -24,11 +24,12 @@ class FarmingGame():
         #load map
         self.background.load_map("map1")
         #render map to screen
-        self.background.render_map(self.screen)
-        self.player.render(self.screen, 0) #render default position
 
     def update(self):
         self.handle_input()
+        #update screen
+        self.background.render_map(self.screen)
+        self.player.render(self.screen, 0)
     
     #for game logic
     # def _process_game_logic(self):
@@ -39,20 +40,17 @@ class FarmingGame():
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 quit()
-            #player movement
+            #player movement:
+            #move while key is pressed down
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w: #up
                     self.player.update_position(0 , -1)
-                    self.player.render(self.screen, 0)
                 elif event.key == pygame.K_s: #down
                     self.player.update_position(0 , 1)
-                    self.player.render(self.screen, 0)
                 elif event.key == pygame.K_a: #left
                     self.player.update_position(-1, 0)
-                    self.player.render(self.screen, 0)
                 elif event.key == pygame.K_d: #right
                     self.player.update_position(1, 0)
-                    self.player.render(self.screen, 0)
                     
                 
 
