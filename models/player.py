@@ -8,14 +8,14 @@ class Player(GameObjects):
         super().__init__(position, file_name)
         self.charSprite = CharSpriteSheet(file_name) #load spritesheet for image
         self.position = position
-        #self.rect = pygame.Rect() #for sprites
-        #customizable things ------
+        #customizable things
+        self.objects = []
         #self.hair sprite object for hair?
         #self.shirt sprite object for shirt
         #self.bottoms sprite object for pants
         #self.shoes sprite object for shoes
         #self.hat sprite object for hat
-        #----------------------------
+
         #self.animations_list = [] #for later: list of animations
 
     #update players position + change sprites

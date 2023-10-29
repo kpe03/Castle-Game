@@ -20,4 +20,4 @@ CH_HEIGHT_SCALE = 80 #for the length of char sprites
 SHEET_BORDER = 8 #pixels
 
 #CHAR
-WALK_SPEED = 1.25
+WALK_SPEED = 1.5
