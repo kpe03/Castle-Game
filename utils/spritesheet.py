@@ -60,11 +60,13 @@ class CharSpriteSheet(SpriteSheet):
         #x: must account for 8 px border around the sheet
         x = (tileNum % (self.tile_width -1) * utils.config.TILE_SIZE) + 8
         #to find the y: (y length is 32 px for now)
-        y = math.floor(tileNum / (self.tile_height * 2)) * utils.config.TILE_SIZE
+        y = math.floor((tileNum / self.tile_height) * 2) * utils.config.TILE_SIZE
         #blits the sprite onto new image. image is now a pygame.Rect
         self.image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
         self.image.blit(self.image, (0, 0))
         sizedImage = pygame.transform.scale(self.image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
+
+        self.test_image(x, y)
 
         return sizedImage
     

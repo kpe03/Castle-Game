@@ -22,14 +22,15 @@ class FarmingGame():
         #other:
         self.game_state = GameState.RUNNING
         #load map
-        self.background.load_map("map1")
-        #render map to screen
+        self.background.load_map("map2")
 
     def update(self):
         self.handle_input()
         #update screen
         self.background.render_map(self.screen)
-        self.player.render(self.screen, 0)
+        #draw sprites based on position/direction
+        #change render so that tile is not passed. 
+        self.player.render(self.screen)
     
     #for game logic
     # def _process_game_logic(self):
