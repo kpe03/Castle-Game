@@ -18,15 +18,20 @@ class Background(SpriteSheet):
             #open file
             with open('utils/maps/' + map_file + ".txt") as mfile:
                 #string in textIOwrapper
+                # for line in mfile:
+                #     tiles =[]
+                #     #int for length of line, increment 2
+                #     for i in range(0, len(line) - 1, 2):
+                #         #add int to tiles list
+                #         tiles.append(line[i])
+                #     #append the tile rows to the map list
+                #     self.map.append(tiles)
+                tiles = []
                 for line in mfile:
-                    tiles =[]
-                    #int for length of line, increment 2
-                    for i in range(0, len(line) - 1, 2):
-                        #add int to tiles list
-                        tiles.append(line[i])
-                    #append the tile rows to the map list
-                    self.map.append(tiles)
-                
+                     number_strings = line.split() #split when whitespace
+                     numbers = [int(n) for n in number_strings] #convert to integers
+                     self.map.append(numbers) #add the row to the list
+
                 print(self.map)
 
     #render the map
