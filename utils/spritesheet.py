@@ -2,9 +2,9 @@ import pygame
 import math
 import utils.config
 
-# =================
-#  sprite sheet
-# =================
+# =======================================
+#            sprite sheet
+# =======================================
 class SpriteSheet:
     #load spritesheet
     def __init__(self, file_name):
@@ -42,9 +42,9 @@ class SpriteSheet:
         print("Found y: " + str(y))
         print("Found x:" + str(x))
 
-# =================
-# char sprite sheet
-# =================
+# ===========================================
+#           char sprite sheet
+# ===========================================
 #a class to handle char sprites which are formatted differently
 class CharSpriteSheet(SpriteSheet):
     #load char sprite sheet

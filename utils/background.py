@@ -4,8 +4,9 @@ import utils.config
 from utils.spritesheet import SpriteSheet
 
 
-"""utils: file for loading backgrounds and other objects"""
-"""inherits from Spritesheet"""
+# =================
+#  background 
+# =================
 class Background(SpriteSheet):
     def __init__(self, file_name, screen):
         super().__init__(file_name)
