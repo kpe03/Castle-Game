@@ -44,18 +44,21 @@ class Player(GameObjects):
     def render(self, screen):
         #list of animation tiles:
         walkAnimR = [0, 2, 4, 6, 8, 10, 12, 14]
-        walkAnimL = [15, 17, 19, 21, 23, 25, 27, 29]
+        walkAnimL = [45, 47, 49, 51, 53, 55, 57, 59]
         
+        tileNum = 0
         #movement right
-        # if self.direction == 1:
-        #     tileNum = 15
-        # #movement left
-        # elif self.direction == -1:
-        #     tileNum = 15
+        if self.direction == 1:
+            #prints 8 pixels higher? x= 8, y=8
+            tileNum = 0
+        #movement left
+        elif self.direction == -1:
+            #prints 8 pixels lower? x= 8, y=32
+            tileNum = 45
         #standing/no movement
         
-        
-        image = self.charSprite.get_image(0) 
+        #tileNums are based on 16x16 squares
+        image = self.charSprite.get_image(tileNum) 
         screen.blit(image, self.position)
         
 

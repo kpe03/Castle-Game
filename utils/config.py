@@ -9,7 +9,7 @@ SCREEN_HEIGHT = 600
 SCREEN_CENTER = [int(SCREEN_WIDTH / 2), int(SCREEN_HEIGHT / 2)]
 #tile size: always 16 pixels
 TILE_SIZE = 16
-CHAR_HEIGHT = 32
+CHAR_HEIGHT = 24
 
 #SCALE to make sprites larger
 SCALE = 40

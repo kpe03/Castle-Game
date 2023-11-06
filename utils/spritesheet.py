@@ -57,15 +57,18 @@ class CharSpriteSheet(SpriteSheet):
 
     #overload
     def get_image(self, tileNum):
+        #tileNums are based on 16x16 squares. would be cool if it could be 16x24 tiles...
+
         #must account for the 8 px border around spritesheet
         x = (tileNum % (self.tile_width - 1) * utils.config.TILE_SIZE) + utils.config.SHEET_BORDER
-        y = (math.floor(tileNum / utils.config.CHAR_HEIGHT ) * self.tile_height) + utils.config.SHEET_BORDER
+        #idk why this works but its does.
+        #divide tilenum  by 24/tile_height and multiply by 32/tile_size*2. then add 8px border
+        y = (math.floor(tileNum / self.tile_height) * 32) + utils.config.SHEET_BORDER
 
         #blit and resize image
-        self.image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
+        self.image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT))
         self.image.blit(self.image, (0,0))
         sizedImage = pygame.transform.scale(self.image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
     
-        # print(x, y)
         return sizedImage
     

@@ -22,7 +22,7 @@ class FarmingGame():
         #other:
         self.game_state = GameState.RUNNING
         #load map
-        self.background.load_map("map2")
+        self.background.load_map("map1")
 
     def update(self):
         self.handle_input()
