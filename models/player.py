@@ -55,7 +55,7 @@ class Player(GameObjects):
         #standing/no movement
         
         
-        image = self.charSprite.get_image(15) 
+        image = self.charSprite.get_image(0) 
         screen.blit(image, self.position)
         
 
