@@ -63,11 +63,16 @@ class CharSpriteSheet(SpriteSheet):
         #idk why this works but its does.
         #divide tilenum  by 24/tile_height and multiply by 32/tile_size*2. then add 8px border
         y = (math.floor(tileNum / self.tile_height) * 32) + utils.config.SHEET_BORDER
-
+        
         #blit and resize image
         self.image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT))
         self.image.blit(self.image, (0,0))
+
+        
         sizedImage = pygame.transform.scale(self.image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
     
         return sizedImage
     
+    
+    def get_accessories(self, tileNum):
+        x = x = (tileNum % (self.tile_width - 1) * utils.config.TILE_SIZE) + utils.config.SHEET_BORDER

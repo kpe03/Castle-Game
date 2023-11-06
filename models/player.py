@@ -34,17 +34,26 @@ class Player(GameObjects):
            self.direction = -1
         
     #blit to screen at current position
-    def render(self, screen, counter):
+    def render(self, screen):
         #list of animation tiles:
         walkAnimR = [0, 2, 4, 6, 8, 10, 12, 14]
         walkAnimL = [45, 47, 49, 51, 53, 55, 57, 59]
         tileNum = 0
+        #get accessories: hair, shirt, pants, shoes, hat
+        accessoriesR = [65]
+        accessoriesL = [90]
         #standing/no movement
         print(tileNum)
+        image = self.charSprite.get_image(0)
         if self.direction == 1:
-            image = self.charSprite.get_image(walkAnimR[counter])
+            # image = self.charSprite.get_image(walkAnimR[counter])
+            image = self.charSprite.get_image(0)
+            for x in accessoriesR:
+                itm = self.charSprite.get_image(x)
+                image
         elif self.direction == -1:
-            image = self.charSprite.get_image(walkAnimL[counter])
+            image = self.charSprite.get_image(45)
+            # image = self.charSprite.get_image(walkAnimL[counter])
 
         #tileNums are based on 16x16 squares
         screen.blit(image, self.position)
