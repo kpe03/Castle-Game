@@ -33,32 +33,20 @@ class Player(GameObjects):
        elif x_pos < 0:
            self.direction = -1
         
-
-    #grabs the tile from the spritesheet
-    # def load_sprites(self, tileNum):
-        #get each tileNum in the tuple
-        #the first tile will be the head of the player sprite
-        # self.charSprite.get_image(tileNum)
-        
     #blit to screen at current position
-    def render(self, screen):
+    def render(self, screen, counter):
         #list of animation tiles:
         walkAnimR = [0, 2, 4, 6, 8, 10, 12, 14]
         walkAnimL = [45, 47, 49, 51, 53, 55, 57, 59]
-        
         tileNum = 0
-        #movement right
-        if self.direction == 1:
-            #prints 8 pixels higher? x= 8, y=8
-            tileNum = 0
-        #movement left
-        elif self.direction == -1:
-            #prints 8 pixels lower? x= 8, y=32
-            tileNum = 45
         #standing/no movement
-        
+        print(tileNum)
+        if self.direction == 1:
+            image = self.charSprite.get_image(walkAnimR[counter])
+        elif self.direction == -1:
+            image = self.charSprite.get_image(walkAnimL[counter])
+
         #tileNums are based on 16x16 squares
-        image = self.charSprite.get_image(tileNum) 
         screen.blit(image, self.position)
         
 
