@@ -54,8 +54,7 @@ class CharSpriteSheet(SpriteSheet):
         self.spriteSheet = pygame.image.load(file_name).convert_alpha()
         #make a sprite image that is 16x32
         self.image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
-
-    #overload
+        
     def get_image(self, tileNum):
         #tileNums are based on 16x16 squares. would be cool if it could be 16x24 tiles...
 
