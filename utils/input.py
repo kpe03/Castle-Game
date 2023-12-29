@@ -9,9 +9,10 @@ class Input:
             'move-up': pygame.K_w,
             'move-down': pygame.K_s,
             'move-left': pygame.K_a,
-            'move-right': pygame.K_d
+            'move-right': pygame.K_d,
+            'diagonal-ur': pygame.K_w or pygame.K_d
         }
-        self.object = object
+        self.entity = entity
 
     def checkInput(self):
         events = pygame.event.get() 
@@ -21,7 +22,7 @@ class Input:
     def keysInput(self):
         pressedKeys = pygame.key.get_pressed()
         #player movement input
-        if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-up']]:
+        if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-down']]:
             self.entity.updatePosition(0, -1)
         elif pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
             self.entity.updatePosition(0, 1)
