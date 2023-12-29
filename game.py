@@ -7,6 +7,8 @@ from models.player import Player
 class CastleGame():
     def __init__(self, screen):
         #set the created screen (width and height in config)
+        self.x_move = 0
+        self.y_move = 0
         self.screen = screen
         self.objects = []
         self.map = []
@@ -18,39 +20,52 @@ class CastleGame():
         #load player in the center of the screen and sprite sheet
         player = Player(utils.config.SCREEN_CENTER, "assets/charas/princess_sheet.png")
         self.player = player
-
-        #other:
         self.game_state = GameState.RUNNING
         #load map
         self.background.load_map("map1")
-        #render map to screen
 
     def update(self):
-        self.handle_input()
         #update screen
         self.background.render_map(self.screen)
         self.player.render(self.screen, 0)
+        self.handle_events()
     
     #for game logic
     # def _process_game_logic(self):
     #     #placeholder
 
-    def handle_input(self):
-        #quit game (return key)
+    
+    def handle_events(self):
+        #key events only occur one at a time
+        #keep values for each event and only change when key goes up or down.
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+            if event.type == pygame.QUIT:
                 quit()
             #player movement:
-            #move while key is pressed down
+            ## KEYDOWN triggers when keys are released movement continues
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w: #up
-                    self.player.update_position(0 , -1)
+                    self.y_move = -1
                 elif event.key == pygame.K_s: #down
-                    self.player.update_position(0 , 1)
+                    self.y_move = 1
                 elif event.key == pygame.K_a: #left
-                    self.player.update_position(-1, 0)
-                elif event.key == pygame.K_d: #right
-                    self.player.update_position(1, 0)
+                    self.x_move = -1
+                elif event.key == pygame.K_d: #right  
+                    self.x_move = 1
+            ## KEYUP triggers when keys are released, movement stops
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w: #up
+                    self.y_move = 0
+                elif event.key == pygame.K_s: #down
+                    self.y_move = 0
+                elif event.key == pygame.K_a: #left
+                    self.x_move = 0
+                elif event.key == pygame.K_d: #right  
+                    self.x_move = 0
+            #update positions for each event
+            self.player.update_position(self.x_move, self.y_move)
+            self.player.update_position(self.x_move, self.y_move)
+           
                     
                 
 

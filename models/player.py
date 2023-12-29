@@ -1,7 +1,7 @@
 import pygame
 
 from models.game_objects import GameObjects
-from utils.spritesheet import CharSpriteSheet, SpriteSheet
+from utils.spritesheet import CharSpriteSheet
 
 class Player(GameObjects):
     def __init__(self, position, file_name):
@@ -16,15 +16,8 @@ class Player(GameObjects):
        self.position[0] += x_pos
        self.position[1] += y_pos
 
-    #grabs the tile from the spritesheet
-    # def load_sprites(self, tileNum):
-        #get each tileNum in the tuple
-        #the first tile will be the head of the player sprite
-        # self.charSprite.get_image(tileNum)
-        
     #blit to screen at current position
     def render(self, screen, tileNum):
-        #print("player rendered")
         image = self.charSprite.get_image(tileNum)
         print(self.position)
         screen.blit(image, self.position)
