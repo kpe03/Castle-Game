@@ -19,7 +19,6 @@ class Player(GameObjects):
     #blit to screen at current position
     def render(self, screen, tileNum):
         image = self.charSprite.get_image(tileNum)
-        print(self.position)
         screen.blit(image, self.position)
         
 

@@ -30,11 +30,6 @@ class CastleGame():
         self.player.render(self.screen, 0)
         self.handle_events()
     
-    #for game logic
-    # def _process_game_logic(self):
-    #     #placeholder
-
-    
     def handle_events(self):
         #key events only occur one at a time
         #keep values for each event and only change when key goes up or down.
@@ -62,6 +57,7 @@ class CastleGame():
                     self.x_move = 0
                 elif event.key == pygame.K_d: #right  
                     self.x_move = 0
+            print(self.x_move, self.y_move)
             #update positions for each event
             self.player.update_position(self.x_move, self.y_move)
             self.player.update_position(self.x_move, self.y_move)
