@@ -58,7 +58,7 @@ class CharSpriteSheet(SpriteSheet):
     #overload
     def get_image(self, tileNum):
         #x: must account for 8 px border around the sheet
-        x = (tileNum % (self.tile_width -1) * utils.config.TILE_SIZE) + 8
+        x = (tileNum % (self.tile_width -1) * utils.config.TILE_SIZE) 
         #to find the y: (y length is 32 px for now)
         y = math.floor(tileNum / (self.tile_height * 2)) * utils.config.TILE_SIZE
         #blits the sprite onto new image. image is now a pygame.Rect

@@ -4,7 +4,7 @@ from utils.game_state import GameState
 from utils.background import Background
 from models.player import Player
 
-class FarmingGame():
+class CastleGame():
     def __init__(self, screen):
         #set the created screen (width and height in config)
         self.screen = screen
@@ -16,7 +16,7 @@ class FarmingGame():
 
     def set_up(self):
         #load player in the center of the screen and sprite sheet
-        player = Player(utils.config.SCREEN_CENTER, "assets/char free/global.png")
+        player = Player(utils.config.SCREEN_CENTER, "assets/charas/princess_sheet.png")
         self.player = player
 
         #other:
@@ -42,7 +42,7 @@ class FarmingGame():
                 quit()
             #player movement:
             #move while key is pressed down
-            elif event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w: #up
                     self.player.update_position(0 , -1)
                 elif event.key == pygame.K_s: #down
