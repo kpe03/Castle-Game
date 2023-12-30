@@ -30,13 +30,18 @@ class Walk(Move):
         if self.direction_x != 0:
             if self.direction_x < 0:
                 self.animation["walk-left"].update()
+                self.entity.position[0] += -1
             else:
                 self.animation["walk-right"].update()
+                self.entity.position[0] += 1
+                
         if self.direction_y != 0:
             if self.direction_y < 0:
                 self.animation["walk-up"].update()
+                self.entity.position[1] += -1
             else:
                 self.animation["walk-down"].update()
+                self.entity.position[1] += 1
         
     def updateAnimation(self, animation):
         self.animation = animation

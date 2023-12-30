@@ -24,14 +24,19 @@ class Input:
         pressedKeys = pygame.key.get_pressed()
         #player movement input
         if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-down']]:
-            # self.entity.updatePosition(0, -1)
             self.entity.traits["walk"].direction_y = -1
+            print("Up")
         elif pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
             self.entity.traits["walk"].direction_y = 1
+            print("Down")
         elif pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
             self.entity.traits["walk"].direction_x = -1
+            print("Left")
         elif pressedKeys[self.bindings['move-right']] and not pressedKeys[self.bindings['move-left']]:
             self.entity.traits["walk"].direction_y = 1
+            print("Right")
+
+        
 
     def quitEvents(self, events):
         for event in events:

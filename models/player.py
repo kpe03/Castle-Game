@@ -40,6 +40,7 @@ class Player(Entity):
        #update position
        self.position[0] += x_pos
        self.position[1] += y_pos
+       print(x_pos, y_pos)
 
     #to do: update using traits and animations
     def render(self, screen):
@@ -48,5 +49,7 @@ class Player(Entity):
     
     #handle rendering, position, collision, input
     def update(self):
+        
+        self.updateTraits()
         self.input.checkInput()
         # self.render(self.screen, 0)
