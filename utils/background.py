@@ -3,8 +3,7 @@ import pygame
 import utils.config
 from utils.spritesheet import SpriteSheet
 
-
-"""utils: file for loading backgrounds and other objects"""
+"""file for loading backgrounds and other objects"""
 """inherits from Spritesheet"""
 class Background(SpriteSheet):
     def __init__(self, file_name, screen):
@@ -26,13 +25,10 @@ class Background(SpriteSheet):
                         tiles.append(line[i])
                     #append the tile rows to the map list
                     self.map.append(tiles)
-                
                 print(self.map)
 
     #render the map
-    #added screen parameter..? maybe that was the problem
     def render_map(self, screen):
-
         #for each row in map
         ypos = 0
         for line in self.map:
@@ -52,6 +48,4 @@ class Background(SpriteSheet):
 
     #testing background methods
     def test_background(self, line, tileNum):
-        #tile num is right, then loading the tiles is wrong and the tiles aren't getting loaded to the correct
-        #spot on the rect
         print("TileNum: " + tileNum)
