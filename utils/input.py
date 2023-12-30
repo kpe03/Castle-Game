@@ -5,6 +5,7 @@ class Input:
         #get current keys/events
         self.x_move = 0
         self.y_move = 0
+        #dictionary for key bindings
         self.bindings = {
             'move-up': pygame.K_w,
             'move-down': pygame.K_s,

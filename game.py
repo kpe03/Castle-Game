@@ -32,34 +32,7 @@ class CastleGame():
     
     def handle_events(self):
         pass
-        #key events only occur one at a time
-        #keep values for each event and only change when key goes up or down.
-        # for event in pygame.event.get():
-        #     if event.type == pygame.QUIT:
-        #         quit()
-        #     #player movement:
-        #     ## KEYDOWN triggers when keys are released movement continues
-        #     if event.type == pygame.KEYDOWN:
-        #         if event.key == pygame.K_w: #up
-        #             self.y_move = -1
-        #         elif event.key == pygame.K_s: #down
-        #             self.y_move = 1
-        #         elif event.key == pygame.K_a: #left
-        #             self.x_move = -1
-        #         elif event.key == pygame.K_d: #right  
-        #             self.x_move = 1
-        #     ## KEYUP triggers when keys are released, movement stops
-        #     if event.type == pygame.KEYUP:
-        #         if event.key == pygame.K_w: #up
-        #             self.y_move = 0
-        #         elif event.key == pygame.K_s: #down
-        #             self.y_move = 0
-        #         elif event.key == pygame.K_a: #left
-        #             self.x_move = 0
-        #         elif event.key == pygame.K_d: #right  
-        #             self.x_move = 0
-        #     print(self.x_move, self.y_move)
-            #update positions for each event
+      
            
                     
                 

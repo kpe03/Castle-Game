@@ -68,3 +68,6 @@ class CharSpriteSheet(SpriteSheet):
 
         return sizedImage
     
+    #a class for rendering animations?
+    def animation(self):
+        pass
