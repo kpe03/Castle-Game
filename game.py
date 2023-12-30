@@ -17,7 +17,7 @@ class CastleGame():
 
     def set_up(self):
         #load player in the center of the screen and sprite sheet
-        player = Player(utils.config.SCREEN_CENTER, "assets/charas/princess_sheet.png", self.screen)
+        player = Player(utils.config.SCREEN_CENTER, self.screen)
         self.player = player
         self.game_state = GameState.RUNNING
         #load map

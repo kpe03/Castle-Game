@@ -3,10 +3,10 @@ from models.entity import Entity
 from utils.spritesheet import CharSpriteSheet
 from utils.animation import Animation
 from utils.input import Input
-from traits.move import Move
+from traits.move import Move, Walk
 
 #todo: flexibility for character creation
-spriteSheet = CharSpriteSheet("assets/charas/princess_sheet.png")
+spriteSheet = CharSpriteSheet()
 walkAnimations = {
     #walk (each walk has an animation and idle animation)
     #todo: implement idle animations
@@ -32,7 +32,7 @@ class Player(Entity):
         # traits of the player class
         self.traits = {
             #todo: make work with multiple animations?
-            "walk": Move(walkAnimations)
+            "walk": Walk(walkAnimations, self.screen, self)
         }
 
     #update players position + change sprites
@@ -42,11 +42,11 @@ class Player(Entity):
        self.position[1] += y_pos
 
     #to do: update using traits and animations
-    def render(self, screen, tileNum):
-        image = self.charSprite.get_image(tileNum)
-        screen.blit(image, self.position)
+    def render(self, screen):
+        # screen.blit(image, self.position)
+        pass
     
     #handle rendering, position, collision, input
     def update(self):
         self.input.checkInput()
-        self.render(self.screen, 0)
+        # self.render(self.screen, 0)
