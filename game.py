@@ -26,7 +26,6 @@ class CastleGame():
     def update(self):
         #update screen
         self.background.render_map(self.screen)
-        #make player have an update to handle rendering/input/ect
         self.player.update()
         # utils.input.checkInput() #checks input events
     

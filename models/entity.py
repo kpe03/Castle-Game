@@ -13,8 +13,9 @@ class Entity:
         for trait in self.traits.values():
             try:
                 trait.update()
+                print(trait)
             except AttributeError:
-                pass
+               pass
 
     def getPosition(self):
         return self.position

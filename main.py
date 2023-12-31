@@ -1,7 +1,6 @@
 import pygame
 import utils.config
 from utils.game_state import GameState
-
 from game import CastleGame
 
 pygame.init()

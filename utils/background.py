@@ -25,7 +25,7 @@ class Background(SpriteSheet):
                         tiles.append(line[i])
                     #append the tile rows to the map list
                     self.map.append(tiles)
-                print(self.map)
+                #print(self.map)
 
     #render the map
     def render_map(self, screen):

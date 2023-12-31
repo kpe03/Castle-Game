@@ -55,34 +55,30 @@ class SpriteSheet:
 # =================
 # char sprite sheet
 # =================
-#a class to handle char sprites which are formatted differently
 class CharSpriteSheet():
     #load char sprite sheet
     def __init__(self):
         #for transparency: convert_alpha() and pygame.SRCALPHA flag in self.image!
         try:
             self.sheet = pygame.image.load("./assets/charas/princess_sheet.png")
-            
             # self.image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
         except pygame.error:
             print("Unable to load")
         
-        #get width of tiles: width / pixel size of each tile
-        self.tile_width = (self.sheet.get_width()) / utils.config.TILE_SIZE
+        self.tile_width = math.floor(self.sheet.get_width() / utils.config.TILE_SIZE)
         #get length of tiles
-        self.tile_height = (self.sheet.get_height()) / utils.config.TILE_SIZE
-      
+        self.tile_height = math.floor(self.sheet.get_height() / (utils.config.TILE_SIZE * 2))
+        
 
     #overload
     def get_image(self, tileNum):
-        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE])
-        #x: must account for 8 px border around the sheet
-        x = (tileNum % (self.tile_width -1) * utils.config.TILE_SIZE) 
-        #to find the y: (y length is 32 px for now)
-        y = math.floor(tileNum / (self.tile_height * 2)) * utils.config.TILE_SIZE
+        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2])
+        x = (tileNum % (self.tile_width - 1) * utils.config.TILE_SIZE) 
+        y = (math.floor(tileNum / (self.tile_height))) * (utils.config.TILE_SIZE * 2)
+
         #blits the sprite onto new image. image is now a pygame.Rect
         image.blit(self.sheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
-        image.blit(image, (0, 0))
+        #image.blit(image, (0, 0))
         sizedImage = pygame.transform.scale(image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
 
         return sizedImage

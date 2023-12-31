@@ -27,6 +27,7 @@ class Walk(Move):
 
     def update(self):
         #todo: idle animation for each walk?
+        # print("Update")
         if self.direction_x != 0:
             if self.direction_x < 0:
                 self.animation["walk-left"].update()
@@ -42,7 +43,9 @@ class Walk(Move):
             else:
                 self.animation["walk-down"].update()
                 self.entity.position[1] += 1
+        self.drawEntity()
         
+
     def updateAnimation(self, animation):
         self.animation = animation
         self.update()
