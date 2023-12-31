@@ -1,7 +1,7 @@
 import pygame
 
 class Animation:
-    def __init__(self, images, idleSprite=None, deltaTime=6):
+    def __init__(self, images, idleSprite=None, deltaTime=1):
         self.images = images
         self.index = 0 #index of current image of animation
         self.timer = 0 #to cycle thro images

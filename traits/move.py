@@ -30,10 +30,14 @@ class Walk(Move):
     def update(self):
         #todo: idle animation for each walk?
         #when not zero, update animation with corresponding walk
+        self.animation.deltaTime = 6
+
         if self.direction_x == 1:
             pass
         elif self.direction_x == -1:
             pass
+        if self.direction_x == 0 and self.direction_y == 0:
+            self.animation = self.entity.walkAnimations["default"]
         self.animation.update()
         self.drawEntity()
         # print(self.direction_x)
