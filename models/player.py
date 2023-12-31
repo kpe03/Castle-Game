@@ -5,12 +5,10 @@ from utils.animation import Animation
 from utils.input import Input
 from traits.move import Walk
 
-#todo: flexibility for character creation
-spriteSheet = CharSpriteSheet()
-
-
 class Player(Entity):
     def __init__(self, position, screen):
+        #todo: flexibility for character creation
+        spriteSheet = CharSpriteSheet()
         super(Player, self).__init__(position)
         self.input = Input(self) #player input
         self.screen = screen #blit sprites

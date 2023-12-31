@@ -60,26 +60,22 @@ class CharSpriteSheet():
     #load char sprite sheet
     def __init__(self):
         #for transparency: convert_alpha() and pygame.SRCALPHA flag in self.image!
-        
-        sheet = pygame.image.load("./assets/charas/princess_sheet.png").convert()
-        
+        self.sheet = pygame.image.load("./assets/charas/princess_sheet.png").convert_alpha()
+        self.image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
         
         self.tile_width = math.floor(self.sheet.get_width() / utils.config.TILE_SIZE)
-        #get length of tiles
         self.tile_height = math.floor(self.sheet.get_height() / (utils.config.TILE_SIZE * 2))
-        self.image = pygame.Surface([self.sheet.get_width(), self.sheet.get_height()], pygame.SRCALPHA)
-        self.image.blit(self.sheet, (0, 0))
 
     #overload
     def get_image(self, tileNum):
-        char_image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2])
+        # char_image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2])
         x = (tileNum % (self.tile_width - 1) * utils.config.TILE_SIZE) 
         y = (math.floor(tileNum / (self.tile_height))) * (utils.config.TILE_SIZE * 2)
 
         #blits the sprite onto new image. image is now a pygame.Rect
-        char_image.blit(self.image, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
+        self.image.blit(self.image, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
         #image.blit(image, (0, 0))
-        sizedImage = pygame.transform.scale(char_image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
+        sizedImage = pygame.transform.scale(self.image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
 
         return sizedImage
     
