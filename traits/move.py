@@ -30,16 +30,23 @@ class Walk(Move):
     def update(self):
         #todo: idle animation for each walk?
         #when not zero, update animation with corresponding walk
-        print(self.direction_x)
-        if self.direction_x != 0:
-            if self.direction_x < 0:
-                self.animation = self.entity.walkAnimations["walk-left"]
-                # self.entity.position[0] += -1
-            elif self.direction_y > 0:
-                self.animation = self.entity.walkAnimations["walk-right"]
-                # self.entity.position[0] += 1
-            self.animation.update()
+        self.animation.update()
         self.drawEntity()
+        # print(self.direction_x)
+        # if self.direction_x != 0:
+        #     if self.direction_x < 0:
+        #         self.animation = self.entity.walkAnimations["walk-left"]
+        #         self.animation.update()
+        #         self.drawEntity()
+        #         # self.entity.position[0] += -1
+        #     elif self.direction_y > 0:
+        #         self.animation = self.entity.walkAnimations["walk-right"]
+        #         self.animation.update()
+        #         self.drawEntity()
+                # self.entity.position[0] += 1
+            
+        
+        
         # print(self.animation.image, self.position.entity)
         
         # if self.direction_y != 0:

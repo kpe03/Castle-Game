@@ -24,11 +24,12 @@ class Input:
         pressedKeys = pygame.key.get_pressed()
         #player movement input
         if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-down']]:
+            self.entity.traits["walk"].updateAnimation(self.entity.walkAnimations["walk-up"])
             self.entity.traits["walk"].direction_y = -1
-            print("up")
+            
         elif pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
             self.entity.traits["walk"].direction_y = 1
-            print("down")
+
         elif pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
             self.entity.traits["walk"].direction_x = -1
             
