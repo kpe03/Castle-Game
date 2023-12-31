@@ -1,3 +1,0 @@
-all grass patches: 16x16
-12x11 tilesS
-grassTiles = []

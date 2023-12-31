@@ -8,14 +8,24 @@ import utils.config
 class SpriteSheet:
     #load spritesheet
     def __init__(self, file_name):
-
-        self.spriteSheet = pygame.image.load(file_name).convert()
-
+        #todo: Update spritesheet loading
+        # self.spriteSheet = pygame.image.load(file_name).convert()
+        try:
+            self.sheet = pygame.image.load(file_name)
+            if not self.sheet.get_alpha():
+                self.sheet.set_colorkey((0,0,0))
+        except pygame.error:
+            print("unable to load spritesheet image:", file_name)
+        
         #get width of tiles: width / pixel size of each tile
-        self.tile_width = (self.spriteSheet.get_width()) / utils.config.TILE_SIZE
+        self.tile_width = (self.sheet.get_width()) / utils.config.TILE_SIZE
         #get length of tiles
-        self.tile_height = (self.spriteSheet.get_height()) / utils.config.TILE_SIZE
+        self.tile_height = (self.sheet.get_height()) / utils.config.TILE_SIZE
 
+
+    #todo: change to load all sprites (thus each sprite is only loaded once!!)
+    def loadSprites(self):
+        pass
     #get sprite
     def get_image(self, tileNum):
         #make a new image for sprite
@@ -29,7 +39,7 @@ class SpriteSheet:
         y = math.floor(tileNum / self.tile_height) * utils.config.TILE_SIZE
         
         #blits the sprite onto new image
-        image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE))
+        image.blit(self.sheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE))
         #resize the image
         sizedImage = pygame.transform.scale(image, (utils.config.SCALE, utils.config.SCALE))
 
@@ -45,26 +55,31 @@ class SpriteSheet:
 # =================
 # char sprite sheet
 # =================
-#a class to handle char sprites which are formatted differently
-class CharSpriteSheet(SpriteSheet):
+class CharSpriteSheet():
     #load char sprite sheet
-    def __init__(self, file_name):
-        super().__init__(file_name)
+    def __init__(self):
         #for transparency: convert_alpha() and pygame.SRCALPHA flag in self.image!
-        self.spriteSheet = pygame.image.load(file_name).convert_alpha()
-        #make a sprite image that is 16x32
-        self.image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
+        try:
+            self.sheet = pygame.image.load("./assets/charas/princess_sheet.png")
+            # self.image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
+        except pygame.error:
+            print("Unable to load")
+        
+        self.tile_width = math.floor(self.sheet.get_width() / utils.config.TILE_SIZE)
+        #get length of tiles
+        self.tile_height = math.floor(self.sheet.get_height() / (utils.config.TILE_SIZE * 2))
+        
 
     #overload
     def get_image(self, tileNum):
-        #x: must account for 8 px border around the sheet
-        x = (tileNum % (self.tile_width -1) * utils.config.TILE_SIZE) 
-        #to find the y: (y length is 32 px for now)
-        y = math.floor(tileNum / (self.tile_height * 2)) * utils.config.TILE_SIZE
+        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2])
+        x = (tileNum % (self.tile_width - 1) * utils.config.TILE_SIZE) 
+        y = (math.floor(tileNum / (self.tile_height))) * (utils.config.TILE_SIZE * 2)
+
         #blits the sprite onto new image. image is now a pygame.Rect
-        self.image.blit(self.spriteSheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
-        self.image.blit(self.image, (0, 0))
-        sizedImage = pygame.transform.scale(self.image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
+        image.blit(self.sheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
+        #image.blit(image, (0, 0))
+        sizedImage = pygame.transform.scale(image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
 
         return sizedImage
     

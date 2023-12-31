@@ -2,6 +2,7 @@ import pygame
 import utils.config
 from utils.game_state import GameState
 from utils.background import Background
+from utils.input import Input
 from models.player import Player
 
 class CastleGame():
@@ -16,41 +17,22 @@ class CastleGame():
 
     def set_up(self):
         #load player in the center of the screen and sprite sheet
-        player = Player(utils.config.SCREEN_CENTER, "assets/charas/princess_sheet.png")
+        player = Player(utils.config.SCREEN_CENTER, self.screen)
         self.player = player
-
-        #other:
         self.game_state = GameState.RUNNING
         #load map
         self.background.load_map("map1")
-        #render map to screen
 
     def update(self):
-        self.handle_input()
         #update screen
         self.background.render_map(self.screen)
-        self.player.render(self.screen, 0)
+        self.player.update()
+        # utils.input.checkInput() #checks input events
     
-    #for game logic
-    # def _process_game_logic(self):
-    #     #placeholder
-
-    def handle_input(self):
-        #quit game (return key)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-                quit()
-            #player movement:
-            #move while key is pressed down
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w: #up
-                    self.player.update_position(0 , -1)
-                elif event.key == pygame.K_s: #down
-                    self.player.update_position(0 , 1)
-                elif event.key == pygame.K_a: #left
-                    self.player.update_position(-1, 0)
-                elif event.key == pygame.K_d: #right
-                    self.player.update_position(1, 0)
+    def handle_events(self):
+        pass
+      
+           
                     
                 
 
