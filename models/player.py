@@ -49,9 +49,9 @@ class Player(Entity):
     
     #handle rendering, position, collision, input
     def update(self):
-        #self.updateTraits()
-        #self.input.checkInput()
-        self.render(self.screen)
+        self.updateTraits()
+        self.input.checkInput()
+        
         
 
         
