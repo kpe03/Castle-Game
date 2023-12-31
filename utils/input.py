@@ -25,15 +25,19 @@ class Input:
         #player movement input
         if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-down']]:
             self.entity.traits["walk"].direction_y = -1
-            
+            print("up")
         elif pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
             self.entity.traits["walk"].direction_y = 1
-            
+            print("down")
         elif pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
             self.entity.traits["walk"].direction_x = -1
             
         elif pressedKeys[self.bindings['move-right']] and not pressedKeys[self.bindings['move-left']]:
-            self.entity.traits["walk"].direction_y = 1
+            self.entity.traits["walk"].direction_x = 1
+        else:
+            self.entity.traits["walk"].direction_x = 0
+            self.entity.traits["walk"].direction_y = 0
+        
 
     def quitEvents(self, events):
         for event in events:

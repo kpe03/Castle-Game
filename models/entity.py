@@ -13,7 +13,7 @@ class Entity:
         for trait in self.traits.values():
             try:
                 trait.update()
-                print(trait)
+                print(trait.type)
             except AttributeError:
                pass
 

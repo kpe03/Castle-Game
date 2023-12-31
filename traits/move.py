@@ -1,4 +1,5 @@
 
+
 class Move:
     def __init__(self, animation, screen, entity):
         self.animation = animation #most likely a dictionary of animations
@@ -24,32 +25,32 @@ class Walk(Move):
         super(Walk, self).__init__(animation, screen, entity)
         self.direction_y = 0 #keeps track of what direction player is moving
         self.direction_x = 0
+        
 
     def update(self):
         #todo: idle animation for each walk?
-        # print("Update")
+        #when not zero, update animation with corresponding walk
+        print(self.direction_x)
         if self.direction_x != 0:
             if self.direction_x < 0:
-                self.animation["walk-left"].update()
-                self.entity.position[0] += -1
-            else:
-                self.animation["walk-right"].update()
-                self.entity.position[0] += 1
-                
-        if self.direction_y != 0:
-            if self.direction_y < 0:
-                self.animation["walk-up"].update()
-                self.entity.position[1] += -1
-            else:
-                self.animation["walk-down"].update()
-                self.entity.position[1] += 1
+                self.animation = self.entity.walkAnimations["walk-left"]
+                # self.entity.position[0] += -1
+            elif self.direction_y > 0:
+                self.animation = self.entity.walkAnimations["walk-right"]
+                # self.entity.position[0] += 1
+            self.animation.update()
         self.drawEntity()
+        # print(self.animation.image, self.position.entity)
         
-
-    def updateAnimation(self, animation):
-        self.animation = animation
-        self.update()
-
+        # if self.direction_y != 0:
+        #     if self.direction_y < 0:
+        #         self.animation["walk-up"].update()
+        #         self.entity.position[1] += -1
+        #     else:
+        #         self.animation["walk-down"].update()
+        #         self.entity.position[1] += 1
+    def render(self, image, screen):
+        screen.blit(image, self.position)
 
             
             
