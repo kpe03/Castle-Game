@@ -4,7 +4,7 @@ class Animation:
     def __init__(self, images, idleSprite=None, deltaTime=6):
         self.images = images
         self.index = 0 #index of current image of animation
-        self.time = 0 #to cycle thro images
+        self.timer = 0 #to cycle thro images
         self.image = self.images[self.index]
         self.deltaTime = deltaTime
         self.idleSprite = idleSprite #none by default
