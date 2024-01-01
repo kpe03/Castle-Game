@@ -1,6 +1,5 @@
 from utils.spritesheet import SpriteSheet
 
-#parent class for objects in game
 class Entity:
     #todo: add attributes to entity class
     def __init__(self, position):

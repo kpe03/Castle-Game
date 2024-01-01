@@ -1,4 +1,5 @@
 import pygame
+import utils.config
 
 class Move:
     def __init__(self, animation, screen, entity):
@@ -31,15 +32,28 @@ class Walk(Move):
     def update(self):
         #todo: idle animation
         #when not zero, update animation with corresponding walk
-        self.animation.deltaTime = 6
+        
         if self.move == True:
+            if self.direction_x == -1:
+                self.entity.updatePosition([-1 * utils.config.WALK_SPEED, 0])
+            elif self.direction_x == 1:
+                self.entity.updatePosition([ utils.config.WALK_SPEED, 0])
+            if self.direction_y == -1:
+                self.entity.updatePosition([0, -1 *  utils.config.WALK_SPEED])
+            elif self.direction_y == 1:
+                self.entity.updatePosition([0,  utils.config.WALK_SPEED])
+            #update and draw
             self.animation.update()
             self.drawEntity()
+            
         #idle animation
-        else:
-            #self.drawEntity()
-            pass
-     
+        # elif self.move == False:
+        #     self.animation.idle()
+        #     self.drawEntity()
+        
+        
+           
+    
     def render(self, image, screen):
         screen.blit(image, self.position)
 
