@@ -21,43 +21,33 @@ class Move:
     def drawEntity(self):
         self.screen.blit(self.animation.image, self.entity.position)
 
+
+
+
 #handle multiple walking animations?
 class Walk(Move):
     def __init__(self, animation, screen, entity, direction):
         super(Walk, self).__init__(animation, screen, entity)
-        self.direction_y = 0 #keeps track of what direction player is moving
+        self.direction_y = 0    #keeps track of what direction player is moving
         self.direction_x = 0
         self.direction = direction
-        # self.move = False #flag for moving
+        self.move = False       #flag for moving
         
         
     def update(self):
         #todo: idle animation
         #when not zero, update animation with corresponding walk
-        if self.entity.state == 'moving':
-            if self.entity.direction == "walk-left":
-                self.entity.updatePosition([-1 * utils.config.WALK_SPEED, 0])
-            elif self.entity.direction == "walk-up":
-                self.entity.updatePosition([0, -1 *  utils.config.WALK_SPEED])
-            elif self.entity.direction == "walk-down":
-                 self.entity.updatePosition([0,  utils.config.WALK_SPEED])
-            elif self.direction == "walk-right":
-                self.entity.updatePosition([ utils.config.WALK_SPEED, 0])
-            # elif self.direction_x == 1:
-            #     self.entity.updatePosition([ utils.config.WALK_SPEED, 0])
-        else:
-            pass
-            # if self.direction_y == -1:
-            #     self.entity.updatePosition([0, -1 *  utils.config.WALK_SPEED])
-                
-            # elif self.direction_y == 1:
-            #     self.entity.updatePosition([0,  utils.config.WALK_SPEED])
-            # self.drawEntity()
+        if self.direction == "walk-up":
+            self.entity.updatePosition([0, utils.config.WALK_SPEED])
+        if self.direction == "walk-right":
+            self.entity.updatePosition([utils.config.WALK_SPEED, 0])
+        if self.direction == "walk-down":
+            self.entity.updatePosition([0, -1 * utils.config.WALK_SPEED])
+        if self.direction == "walk-left":
+            self.entity.updatePosition([0, utils.config.WALK_SPEED])
         self.animation.update()
         self.drawEntity()
 
-        
-    
     def render(self, image, screen):
         screen.blit(image, self.position)
 

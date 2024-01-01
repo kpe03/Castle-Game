@@ -13,7 +13,6 @@ class Player(Entity):
         super(Player, self).__init__(position)
         self.input = Input(self) #player input
         self.screen = screen #blit sprites
-        self.state = 'resting' #determines state of player
         # traits of the player class
         self.animations = {
             #walk (each walk has an animation and idle animation)
@@ -40,11 +39,7 @@ class Player(Entity):
             "walk-up": Walk(self.animations["walk-up"], self.screen, self, "walk-up"),
             "walk-down": Walk(self.animations["walk-down"], self.screen, self, "walk-down"),
         }
-        self.states = {
-            "resting": self.resting,
-            "moving": self.moving,
-        }
-
+        
     #update players position + change sprites
     def updatePosition(self, coords):
        #update position
@@ -57,35 +52,5 @@ class Player(Entity):
         
     #handle rendering, position, collision, input
     def update(self):
-        self.input.checkInput()
-        # self.updateTraits()
-        #self.render(self.spriteSheet.get_image(15), self.screen)
-
-    #handle movement of player -------------------------------------------------------
-    def begin_moving(self, direction):
-        self.direction = self.traits[direction] #update animation using dictionary
-        self.state = "moving" #starts moving the sprite
-        
-    def moving(self):
-        #update position
-        if self.entity.direction == "walk-left":
-            self.updatePosition([-1 * utils.config.WALK_SPEED, 0])
-        elif self.entity.direction == "walk-up":
-            self.updatePosition([0, -1 *  utils.config.WALK_SPEED])
-        elif self.entity.direction == "walk-down":
-            self.updatePosition([0,  utils.config.WALK_SPEED])
-        elif self.direction == "walk-right":
-            self.updatePosition([utils.config.WALK_SPEED, 0])
-
-        self.traits[self.direction].update() #update corresponding animation
-
-    def begin_resting(self, direction):
-        self.state = "resting"
-        self.direction = direction
-
-    #when player is not moving
-    def resting(self):
-        self.animations[self.direction].idle()
-
-    def drawEntity(self):
-        self.screen.blit(self.anmiation.image, self.position)
+        self.input.checkInput() #handle input in input class
+        self.updateTraits()     #for each trait in traits of player, update them

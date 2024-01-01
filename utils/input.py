@@ -25,50 +25,30 @@ class Input:
 
     def keysInput(self):
         pressedKeys = pygame.key.get_pressed()
-        #player movement input, change animation of walking/direction
-        #when no keys pressed, all else statements will execute... I need an easier
-        #way to handle idle animations.
+   
+        #works but feels super clunky -----------------------------
+        #downs
+        if pressedKeys[self.bindings['move-down']]:
+            self.entity.traits["walk-down"].move = True
+        else: 
+            self.entity.traits["walk-down"].move = False
         #up
-        if self.entity.state == "resting":
-            if pressedKeys[self.bindings['move-up']]:
-                # self.entity.traits["walk-up"].move = True
-                # self.entity.traits["walk-up"].direction_y = -1
-                self.entity.begin_moving("walk-up")
-            else:
-                self.entity.begin_resting("walk-up")
-            if pressedKeys[self.bindings['move-down']]:
-                self.entity.begin_moving("walk-down")
-            else:
-                self.entity.begin_resting("walk-down")
-            
-            
+        if pressedKeys[self.bindings['move-up']]:
+            self.entity.traits["walk-up"].move = True
+        else: 
+            self.entity.traits["walk-up"].move = False
+        #left
+        if pressedKeys[self.bindings['move-left']]: #and not pressedKeys[self.bindings['move-right']]:
+            self.entity.traits["walk-left"].move = True
+        else:
+            self.entity.traits["walk-left"].move = False
 
-        # if pressedKeys[self.bindings['move-down']]:
-        #     self.entity.traits["walk-down"].move = True
-        #     self.entity.traits["walk-down"].direction_y = 1
-        # else: 
-        #     self.entity.traits["walk-down"].move = False
-        #     self.entity.traits["walk-down"].direction_y = 0
-        #     print("Idling")
+        #right
+        if pressedKeys[self.bindings['move-right']]: #and not pressedKeys[self.bindings['move-left']]:
+            self.entity.traits["walk-right"].move = True
+        else:
+            self.entity.traits["walk-right"].move = False
 
-        # #left
-        # if pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
-        #     self.entity.traits["walk-left"].move = True
-        #     self.entity.traits["walk-left"].direction_x = -1
-        # else:
-        #     self.entity.traits["walk-left"].move = False
-        #     self.entity.traits["walk-left"].direction_x = 0
-
-        # #right
-        # if pressedKeys[self.bindings['move-right']] and not pressedKeys[self.bindings['move-left']]:
-        #     self.entity.traits["walk-right"].move = True
-        #     self.entity.traits["walk-right"].direction_x = 1
-        # else:
-        #     self.entity.traits["walk-right"].move = False
-        #     self.entity.traits["walk-right"].direction_x = 0
-            
-
-        
 
     def quitEvents(self, events):
         for event in events:
