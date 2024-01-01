@@ -8,6 +8,7 @@ class Animation:
         self.image = self.images[self.index]
         self.deltaTime = deltaTime
         self.idleSprite = idleSprite #none by default
+        self.deltaTime = deltaTime
 
     #update frames of animation
     def update(self):
