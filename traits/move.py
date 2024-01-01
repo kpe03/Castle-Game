@@ -33,7 +33,6 @@ class Walk(Move):
     def update(self):
         #todo: idle animation
         #when not zero, update animation with corresponding walk
-            
         if self.move == True:
             if self.direction_x == -1:
                 self.entity.updatePosition([-1 * utils.config.WALK_SPEED, 0])
@@ -46,14 +45,8 @@ class Walk(Move):
                 
             elif self.direction_y == 1:
                 self.entity.updatePosition([0,  utils.config.WALK_SPEED])
-                
-            self.animation.update()
             self.drawEntity()
 
-        else:
-            self.aniamtion.idle()
-            print("Idling")
-            self.drawEntity()
         
     
     def render(self, image, screen):

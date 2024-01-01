@@ -12,6 +12,7 @@ class Player(Entity):
         super(Player, self).__init__(position)
         self.input = Input(self) #player input
         self.screen = screen #blit sprites
+        self.state = 'resting' #determines state of player
         # traits of the player class
         self.animations = {
             #walk (each walk has an animation and idle animation)
@@ -27,6 +28,7 @@ class Player(Entity):
 
             "walk-up": Animation([self.spriteSheet.get_image(40), self.spriteSheet.get_image(41), self.spriteSheet.get_image(42),
                            self.spriteSheet.get_image(43), self.spriteSheet.get_image(44), self.spriteSheet.get_image(45)], self.spriteSheet.get_image(3)),
+            
             "default": Animation([self.spriteSheet.get_image(0), self.spriteSheet.get_image(1), self.spriteSheet.get_image(2)],
                                   self.spriteSheet.get_image(0))
         }
@@ -36,7 +38,10 @@ class Player(Entity):
             "walk-left": Walk(self.animations["walk-left"], self.screen, self),
             "walk-up": Walk(self.animations["walk-up"], self.screen, self),
             "walk-down": Walk(self.animations["walk-down"], self.screen, self),
-            "default": Walk(self.animations["default"], self.screen, self)
+        }
+        self.states = {
+            "resting": self.resting,
+            "moving": self.moving,
         }
 
     #update players position + change sprites
@@ -54,7 +59,22 @@ class Player(Entity):
         self.input.checkInput()
         self.updateTraits()
         #self.render(self.spriteSheet.get_image(15), self.screen)
-        
-        
 
+    #handle movement of player -------------------------------------------------------
+    def begin_moving(self, direction):
+        self.direction = self.traits[direction] #update animation using dictionary
+        self.traits[direction].move = True
+        self.state = 'moving'
+        #update position
+        
+    def moving(self, direction):
+        self.traits[direction].update() #update corresponding animation
+
+    def begin_resting(self, direction):
+        self.state = 'resting'
+        self.traits[direction].move = False
+
+    #when player is not moving
+    def resting(self, direction):
+        self.animations[direction].idle()
         
