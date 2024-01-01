@@ -4,6 +4,7 @@ from utils.spritesheet import CharSpriteSheet
 from utils.animation import Animation
 from utils.input import Input
 from traits.move import Walk
+import utils.config
 
 class Player(Entity):
     def __init__(self, position, screen):
@@ -34,10 +35,10 @@ class Player(Entity):
         }
         self.traits = {
             #todo: make work with multiple animations?
-            "walk-right": Walk(self.animations["walk-right"], self.screen, self),
-            "walk-left": Walk(self.animations["walk-left"], self.screen, self),
-            "walk-up": Walk(self.animations["walk-up"], self.screen, self),
-            "walk-down": Walk(self.animations["walk-down"], self.screen, self),
+            "walk-right": Walk(self.animations["walk-right"], self.screen, self, "walk-right"),
+            "walk-left": Walk(self.animations["walk-left"], self.screen, self, "walk-left"),
+            "walk-up": Walk(self.animations["walk-up"], self.screen, self, "walk-up"),
+            "walk-down": Walk(self.animations["walk-down"], self.screen, self, "walk-down"),
         }
         self.states = {
             "resting": self.resting,
@@ -57,24 +58,34 @@ class Player(Entity):
     #handle rendering, position, collision, input
     def update(self):
         self.input.checkInput()
-        self.updateTraits()
+        # self.updateTraits()
         #self.render(self.spriteSheet.get_image(15), self.screen)
 
     #handle movement of player -------------------------------------------------------
     def begin_moving(self, direction):
         self.direction = self.traits[direction] #update animation using dictionary
-        self.traits[direction].move = True
-        self.state = 'moving'
-        #update position
+        self.state = "moving" #starts moving the sprite
         
-    def moving(self, direction):
-        self.traits[direction].update() #update corresponding animation
+    def moving(self):
+        #update position
+        if self.entity.direction == "walk-left":
+            self.updatePosition([-1 * utils.config.WALK_SPEED, 0])
+        elif self.entity.direction == "walk-up":
+            self.updatePosition([0, -1 *  utils.config.WALK_SPEED])
+        elif self.entity.direction == "walk-down":
+            self.updatePosition([0,  utils.config.WALK_SPEED])
+        elif self.direction == "walk-right":
+            self.updatePosition([utils.config.WALK_SPEED, 0])
+
+        self.traits[self.direction].update() #update corresponding animation
 
     def begin_resting(self, direction):
-        self.state = 'resting'
-        self.traits[direction].move = False
+        self.state = "resting"
+        self.direction = direction
 
     #when player is not moving
-    def resting(self, direction):
-        self.animations[direction].idle()
-        
+    def resting(self):
+        self.animations[self.direction].idle()
+
+    def drawEntity(self):
+        self.screen.blit(self.anmiation.image, self.position)
