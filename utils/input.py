@@ -14,6 +14,7 @@ class Input:
             'diagonal-ur': pygame.K_w or pygame.K_d
         }
         self.entity = entity
+        self.lastKeyStroke = None
 
     def checkInput(self):
         events = pygame.event.get() 
@@ -22,8 +23,10 @@ class Input:
 
     def keysInput(self):
         pressedKeys = pygame.key.get_pressed()
-
+        self.lastKeyStroke = pressedKeys[-1]
         #player movement input, change animation of walking/direction
+        #when no keys pressed, all else statements will execute... I need an easier
+        #way to handle idle animations.
         #up
         if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-down']]:
             self.entity.traits["walk-up"].move = True
@@ -31,13 +34,16 @@ class Input:
         else: 
             self.entity.traits["walk-up"].move = False
             self.entity.traits["walk-up"].direction_y = 0
+
         #down 
         if pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
             self.entity.traits["walk-down"].move = True
             self.entity.traits["walk-down"].direction_y = 1
+
         else: 
             self.entity.traits["walk-down"].move = False
             self.entity.traits["walk-down"].direction_y = 0
+
         #left
         if pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
             self.entity.traits["walk-left"].move = True
@@ -45,6 +51,7 @@ class Input:
         else:
             self.entity.traits["walk-left"].move = False
             self.entity.traits["walk-left"].direction_x = 0
+
         #right
         if pressedKeys[self.bindings['move-right']] and not pressedKeys[self.bindings['move-left']]:
             self.entity.traits["walk-right"].move = True
@@ -52,6 +59,12 @@ class Input:
         else:
             self.entity.traits["walk-right"].move = False
             self.entity.traits["walk-right"].direction_x = 0
+            
+        #no keys pressed
+        if pressedKeys == None:
+            print("default")
+            self.entity.traits["default"].move = False
+
 
     def quitEvents(self, events):
         for event in events:

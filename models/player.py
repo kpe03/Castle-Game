@@ -36,6 +36,7 @@ class Player(Entity):
             "walk-left": Walk(self.animations["walk-left"], self.screen, self),
             "walk-up": Walk(self.animations["walk-up"], self.screen, self),
             "walk-down": Walk(self.animations["walk-down"], self.screen, self),
+            "default": Walk(self.animations["default"], self.screen, self)
         }
 
     #update players position + change sprites

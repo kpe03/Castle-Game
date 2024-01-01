@@ -48,14 +48,13 @@ class Walk(Move):
                 self.entity.updatePosition([0,  utils.config.WALK_SPEED])
                 
             self.animation.update()
+            self.drawEntity()
+
         else:
-            if self.direction_x == 0 and self.direction_y == 0:
-                self.animation.idle()
-                print("Idling")
-            self.animation.update()
-            #update and draw
+            self.aniamtion.idle()
+            print("Idling")
+            self.drawEntity()
         
-        self.drawEntity()
     
     def render(self, image, screen):
         screen.blit(image, self.position)
