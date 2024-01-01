@@ -13,7 +13,7 @@ class Player(Entity):
         self.input = Input(self) #player input
         self.screen = screen #blit sprites
         # traits of the player class
-        self.walkAnimations = {
+        self.animations = {
             #walk (each walk has an animation and idle animation)
             #todo: implement idle animations
             "walk-down": Animation([self.spriteSheet.get_image(16),self.spriteSheet.get_image(17), self.spriteSheet.get_image(18),
@@ -32,8 +32,10 @@ class Player(Entity):
         }
         self.traits = {
             #todo: make work with multiple animations?
-            "walk": Walk(self.walkAnimations["default"], self.screen, self)
-            
+            "walk-right": Walk(self.animations["walk-right"], self.screen, self),
+            "walk-left": Walk(self.animations["walk-left"], self.screen, self),
+            "walk-up": Walk(self.animations["walk-up"], self.screen, self),
+            "walk-down": Walk(self.animations["walk-down"], self.screen, self),
         }
 
     #update players position + change sprites

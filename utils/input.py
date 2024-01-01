@@ -24,25 +24,28 @@ class Input:
         pressedKeys = pygame.key.get_pressed()
 
         #player movement input
+        #up
         if pressedKeys[self.bindings['move-up']] and not pressedKeys[self.bindings['move-down']]:
-            self.entity.traits["walk"].updateAnimation(self.entity.walkAnimations["walk-up"])
-            self.entity.traits["walk"].direction_y = -1
-            
-        elif pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
-            self.entity.traits["walk"].updateAnimation(self.entity.walkAnimations["walk-down"])
-            self.entity.traits["walk"].direction_y = 1
-
-        elif pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
-            self.entity.traits["walk"].updateAnimation(self.entity.walkAnimations["walk-left"])
-            self.entity.traits["walk"].direction_x = -1
-            
-        elif pressedKeys[self.bindings['move-right']] and not pressedKeys[self.bindings['move-left']]:
-            self.entity.traits["walk"].updateAnimation(self.entity.walkAnimations["walk-right"])
-            self.entity.traits["walk"].direction_y = 1
-
+            self.entity.traits["walk-up"].move = True
+        else: 
+            self.entity.traits["walk-up"].move = False
+        #down 
+        if pressedKeys[self.bindings['move-down']] and not pressedKeys[self.bindings['move-up']]:
+            self.entity.traits["walk-down"].move = True
+        else: 
+            self.entity.traits["walk-down"].move = False
+        #left
+        if pressedKeys[self.bindings['move-left']] and not pressedKeys[self.bindings['move-right']]:
+            self.entity.traits["walk-left"].move = True
         else:
-            self.entity.traits["walk"].direction_x = 0
-            self.entity.traits["walk"].direction_y = 0
+            self.entity.traits["walk-left"].move = False
+        #right
+        if pressedKeys[self.bindings['move-right']] and not pressedKeys[self.bindings['move-left']]:
+            self.entity.traits["walk-right"].move = True
+        else:
+            self.entity.traits["walk-right"].move = False
+
+    
             
         
 
