@@ -55,9 +55,6 @@ class Walk(Move):
         print("created")
 
 
-# class Idle(Move):
-#     def __init__(self, animation, screen, entity, direction):
-
             
 
 

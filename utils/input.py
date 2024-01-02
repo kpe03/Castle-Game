@@ -28,9 +28,10 @@ class Input:
 
     def keysInput(self):
         pressedKeys = pygame.key.get_pressed()
-        #works but feels super clunky -----------------------------
-        #downs
+        
+        
         if True in pressedKeys:
+            #downs
             if pressedKeys[self.bindings['move-down']]:
                 self.entity.traits["walk-down"].move = True
                 self.entity.traits["walk-down"].update()
@@ -39,13 +40,15 @@ class Input:
                 self.entity.traits["walk-up"].move = True
                 self.entity.traits["walk-up"].update()
             #left
-            if pressedKeys[self.bindings['move-left']]: #and not pressedKeys[self.bindings['move-right']]:
+            if pressedKeys[self.bindings['move-left']]: 
                 self.entity.traits["walk-left"].move = True
                 self.entity.traits["walk-left"].update()
             #right
-            if pressedKeys[self.bindings['move-right']]: #and not pressedKeys[self.bindings['move-left']]:
+            if pressedKeys[self.bindings['move-right']]: 
                 self.entity.traits["walk-right"].move = True
                 self.entity.traits["walk-right"].update()
+
+        #todo: diagonal key strokes (using keysPressed and keysHeld)
                 
         #find last keystroke and do idle aniamtion
         else:

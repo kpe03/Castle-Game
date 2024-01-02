@@ -23,4 +23,3 @@ class Animation:
     
     def idle(self):
         self.image = self.idleSprite
-        print("now idle")
