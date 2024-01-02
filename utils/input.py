@@ -27,25 +27,31 @@ class Input:
         pressedKeys = pygame.key.get_pressed()
    
         #works but feels super clunky -----------------------------
+        #idea: update the move trait of entity in input
+        #(instead of updating all the traits at once??)
         #downs
         if pressedKeys[self.bindings['move-down']]:
             self.entity.traits["walk-down"].move = True
+            self.entity.traits["walk-down"].update()
         else: 
             self.entity.traits["walk-down"].move = False
         #up
         if pressedKeys[self.bindings['move-up']]:
             self.entity.traits["walk-up"].move = True
+            self.entity.traits["walk-up"].update()
         else: 
             self.entity.traits["walk-up"].move = False
         #left
         if pressedKeys[self.bindings['move-left']]: #and not pressedKeys[self.bindings['move-right']]:
             self.entity.traits["walk-left"].move = True
+            self.entity.traits["walk-left"].update()
         else:
             self.entity.traits["walk-left"].move = False
 
         #right
         if pressedKeys[self.bindings['move-right']]: #and not pressedKeys[self.bindings['move-left']]:
             self.entity.traits["walk-right"].move = True
+            self.entity.traits["walk-right"].update()
         else:
             self.entity.traits["walk-right"].move = False
 

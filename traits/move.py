@@ -21,6 +21,7 @@ class Move:
     def drawEntity(self):
         self.screen.blit(self.animation.image, self.entity.position)
 
+    
 
 
 
@@ -32,22 +33,24 @@ class Walk(Move):
         self.direction_x = 0
         self.direction = direction
         self.move = False       #flag for moving
+        self.coords = {
+            "walk-up": [0, -1 * utils.config.WALK_SPEED],
+            "walk-down": [0, utils.config.WALK_SPEED],
+            "walk-right": [utils.config.WALK_SPEED, 0],
+            "walk-left": [-1 * utils.config.WALK_SPEED, 0]
+        }
         
         
     def update(self):
         #todo: idle animation
         #when not zero, update animation with corresponding walk
-        if self.direction == "walk-up":
-            self.entity.updatePosition([0, utils.config.WALK_SPEED])
-        if self.direction == "walk-right":
-            self.entity.updatePosition([utils.config.WALK_SPEED, 0])
-        if self.direction == "walk-down":
-            self.entity.updatePosition([0, -1 * utils.config.WALK_SPEED])
-        if self.direction == "walk-left":
-            self.entity.updatePosition([0, utils.config.WALK_SPEED])
-        self.animation.update()
+        if self.move == True:
+            self.entity.updatePosition(self.coords[self.direction])
+            self.animation.update()
+        else:
+            self.animation.idle()
         self.drawEntity()
-
+        
     def render(self, image, screen):
         screen.blit(image, self.position)
 
