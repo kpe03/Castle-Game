@@ -26,6 +26,7 @@ class SpriteSheet:
     #todo: change to load all sprites (thus each sprite is only loaded once!!)
     def loadSprites(self):
         pass
+
     #get sprite
     def get_image(self, tileNum):
         #make a new image for sprite
@@ -60,26 +61,30 @@ class CharSpriteSheet():
     def __init__(self):
         #for transparency: convert_alpha() and pygame.SRCALPHA flag in self.image!
         try:
-            self.sheet = pygame.image.load("./assets/charas/princess_sheet.png")
-            # self.image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
+            self.sheet = pygame.image.load("./assets/charas/princess_sheet.png").convert_alpha()
+            if not self.sheet.get_alpha():
+                self.sheet.set_colorkey((0, 0, 0))
         except pygame.error:
             print("Unable to load")
         
         self.tile_width = math.floor(self.sheet.get_width() / utils.config.TILE_SIZE)
-        #get length of tiles
-        self.tile_height = math.floor(self.sheet.get_height() / (utils.config.TILE_SIZE * 2))
-        
+        self.tile_height = math.floor(self.sheet.get_height() / (utils.config.TILE_SIZE))
 
     #overload
-    def get_image(self, tileNum):
-        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2])
-        x = (tileNum % (self.tile_width - 1) * utils.config.TILE_SIZE) 
-        y = (math.floor(tileNum / (self.tile_height))) * (utils.config.TILE_SIZE * 2)
+    def get_image(self, tileNum, colorKey=None):
+        image = pygame.Surface([utils.config.TILE_SIZE, utils.config.CHAR_HEIGHT], pygame.SRCALPHA)
 
+        x = (tileNum % (self.tile_width) * utils.config.TILE_SIZE) 
+        y = (math.floor(tileNum / (self.tile_width))) * (utils.config.TILE_SIZE * 2)
+        
         #blits the sprite onto new image. image is now a pygame.Rect
         image.blit(self.sheet, (0, 0), (x, y, utils.config.TILE_SIZE, utils.config.TILE_SIZE * 2))
         #image.blit(image, (0, 0))
         sizedImage = pygame.transform.scale(image, (utils.config.SCALE, utils.config.CH_HEIGHT_SCALE))
 
         return sizedImage
+    
+    def test_coords(self, x, y):
+        print("X:", x)
+        print("Y:", y)
     
