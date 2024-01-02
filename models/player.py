@@ -11,7 +11,11 @@ class Player(Entity):
         #todo: flexibility for character creation
         self.spriteSheet = CharSpriteSheet()
         super(Player, self).__init__(position)
-        self.input = Input(self) #player input
+        
+        #set up player input:
+        self.input = Input(self) 
+        self.input.setUpInput()
+
         self.screen = screen #blit sprites
         # traits of the player class
         self.animations = {
@@ -39,7 +43,7 @@ class Player(Entity):
             "walk-up": Walk(self.animations["walk-up"], self.screen, self, "walk-up"),
             "walk-down": Walk(self.animations["walk-down"], self.screen, self, "walk-down"),
         }
-        
+
     #update players position + change sprites
     def updatePosition(self, coords):
        #update position
@@ -53,4 +57,4 @@ class Player(Entity):
     #handle rendering, position, collision, input
     def update(self):
         self.input.checkInput() #handle input in input class
-        self.updateTraits()     #for each trait in traits of player, update them
+        # self.updateTraits()     #for each trait in traits of player, update them

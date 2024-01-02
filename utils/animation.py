@@ -20,5 +20,7 @@ class Animation:
                 self.index = 0
         self.image = self.images[self.index]
 
+    
     def idle(self):
         self.image = self.idleSprite
+        print("now idle")
