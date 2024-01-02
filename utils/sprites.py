@@ -1,6 +1,8 @@
 from utils.animation import Animation
 from utils.spritesheet import SpriteSheet
 
+#todo:
+# optimize spritesheet loading
 class Sprites:
     def __init__(self):
         #load all sprite sheets

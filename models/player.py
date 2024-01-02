@@ -20,7 +20,7 @@ class Player(Entity):
         # traits of the player class
         self.animations = {
             #walk (each walk has an animation and idle animation)
-            #todo: implement idle animations
+            #to do: make a data class with player animations, initialized when game starts
             "walk-down": Animation([self.spriteSheet.get_image(16),self.spriteSheet.get_image(17), self.spriteSheet.get_image(18),
                            self.spriteSheet.get_image(19), self.spriteSheet.get_image(20), self.spriteSheet.get_image(21)], self.spriteSheet.get_image(0)),
 
@@ -37,7 +37,7 @@ class Player(Entity):
                                   self.spriteSheet.get_image(0))
         }
         self.traits = {
-            #todo: make work with multiple animations?
+            #to do: possibly optimize
             "walk-right": Walk(self.animations["walk-right"], self.screen, self, "walk-right"),
             "walk-left": Walk(self.animations["walk-left"], self.screen, self, "walk-left"),
             "walk-up": Walk(self.animations["walk-up"], self.screen, self, "walk-up"),
@@ -49,12 +49,9 @@ class Player(Entity):
        #update position
        self.position[0] += coords[0]
        self.position[1] += coords[1]
-       
-    # #to do: update using traits and animations
-    # def render(self, image, screen):
-    #     screen.blit(image, self.position)
-        
+
     #handle rendering, position, collision, input
     def update(self):
-        self.input.checkInput() #handle input in input class
-        # self.updateTraits()     #for each trait in traits of player, update them
+        self.input.checkInput()   #handle input in input class
+        #to do: optimize updating traits? possibly
+        
