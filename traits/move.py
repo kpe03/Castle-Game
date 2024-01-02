@@ -21,10 +21,6 @@ class Move:
     def drawEntity(self):
         self.screen.blit(self.animation.image, self.entity.position)
 
-    
-
-
-
 #handle multiple walking animations?
 class Walk(Move):
     def __init__(self, animation, screen, entity, direction):
@@ -51,14 +47,18 @@ class Walk(Move):
             self.animation.idle()
         self.drawEntity()
         
+        
     def render(self, image, screen):
         screen.blit(image, self.position)
 
     def test(self):
         print("created")
 
+
+# class Idle(Move):
+#     def __init__(self, animation, screen, entity, direction):
+
             
-            
-    
+
 
         

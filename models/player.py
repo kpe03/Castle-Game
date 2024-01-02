@@ -11,7 +11,11 @@ class Player(Entity):
         #todo: flexibility for character creation
         self.spriteSheet = CharSpriteSheet()
         super(Player, self).__init__(position)
-        self.input = Input(self) #player input
+        
+        #set up player input:
+        self.input = Input(self) 
+        self.input.setUpInput()
+
         self.screen = screen #blit sprites
         # traits of the player class
         self.animations = {
